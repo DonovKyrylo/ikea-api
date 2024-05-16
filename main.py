@@ -12,7 +12,7 @@ class Product(BaseModel):
     price: float
 
 
-@app.get("/")
+@app.get("/", include_in_schema=False)
 def home():
     return RedirectResponse("/docs")
 
