@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi.responses import RedirectResponse
 from pydantic import BaseModel
+import uvicorn
 
 app = FastAPI()
 
@@ -24,3 +25,9 @@ def test() -> Product:
         price=0
     )
 
+def main():
+    uvicorn.run(app, host='0.0.0.0', port=8000)
+
+
+if __name__ == "__main__":
+    main()
