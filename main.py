@@ -1,15 +1,9 @@
 from fastapi import FastAPI
 from fastapi.responses import RedirectResponse
-from pydantic import BaseModel
 import uvicorn
+from ikeatypes import *
 
 app = FastAPI()
-
-class Product(BaseModel):
-    name: str
-    url: str
-    imageUrl: str
-    price: float
 
 
 @app.get("/", include_in_schema=False)

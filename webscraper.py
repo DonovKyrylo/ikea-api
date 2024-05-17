@@ -1,15 +1,27 @@
-from enum import Enum
 from requests import get
-
-class Color(Enum):
-    WHITE: str
-
+from pprint import pprint
+from ikeatypes import *
 
 
 def search_request(q: str, **kwargs: str):
-    return get(
+    items = get(
         f"https://sik.search.blue.cdtapps.com/it/it/search-result-page?q={q}&"
         + "&".join(f"{key}={value}" for key, value in kwargs.items())
     ).json()["searchResultPage"]["products"]["main"]["items"]
 
-print(search_request("scaffale", page="2"))
+    products: list[Product] = []
+    for item in items:
+        product = item.get("product") or item.get("featuredProduct")
+        if product:
+            products.append(
+                Product(
+                    name=product["name"],
+                    url=product["pipUrl"],
+                    imageUrl=product["mainImageUrl"],
+                    price=product["salesPrice"]["numeral"]
+                )
+            )
+
+    return products
+
+pprint(search_request("scaffale"))
