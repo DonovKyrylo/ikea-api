@@ -19,7 +19,8 @@ def search_request(
     params = remove_null_params({
         "q": query,
         "f-colors": color.value if color != None else None,
-        "sort": sort.value if sort != None else None
+        "sort": sort.value if sort != None else None,
+        "size": 1000
     })
 
     logger.info(f"Sending request to {url} with params: {params}")
