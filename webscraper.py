@@ -23,5 +23,5 @@ def search_request(q: str, **kwargs: str):
             )
 
     return products
-
+# test
 pprint(search_request("scaffale"))
