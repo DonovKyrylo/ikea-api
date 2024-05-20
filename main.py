@@ -20,7 +20,10 @@ def test() -> Product:
     )
 
 def main():
-    uvicorn.run(app, host='0.0.0.0', port=80)
+    try:
+        uvicorn.run(app, host='0.0.0.0', port=80)
+    except KeyboardInterrupt:
+        pass
 
 
 if __name__ == "__main__":
