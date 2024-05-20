@@ -8,7 +8,7 @@ def search_request(
         query: str = None,
         locale: Locale = Locale.EN_US,
         color: Color = None,
-        sort: SortType = None,
+        sort: SortType = SortType.RELEVANCE,
         includeFeatured = False
     ) -> list[Product]:
 
