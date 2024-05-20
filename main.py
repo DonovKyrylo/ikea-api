@@ -8,7 +8,7 @@ def get_enum_query(enum: Enum, default_value: Enum = None) -> Query:
     return Query(default_value.name if default_value is not None else None, enum=[elem.name for elem in enum])
 
 
-app = FastAPI()
+app = FastAPI(title="ikea-api", version="1.0.0")
 
 
 @app.get("/", include_in_schema=False)
