@@ -10,13 +10,6 @@ app = FastAPI()
 def home():
     return RedirectResponse("/docs")
 
-@app.get("/test")
-def test() -> Product:
-    return Product(
-        name="Test",
-        url="google.com",
-        imageUrl="https://upload.wikimedia.org/wikipedia/en/9/9a/Trollface_non-free.png",
-        price=0
     )
 
 def main():
