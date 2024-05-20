@@ -1,5 +1,4 @@
 from requests import get
-from pprint import pprint
 from ikeatypes import *
 
 
@@ -24,4 +23,3 @@ def search_request(q: str, **kwargs: str):
 
     return products
 
-pprint(search_request("scaffale"))
