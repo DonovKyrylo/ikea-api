@@ -22,6 +22,17 @@ class Color(Enum):
     FANTASY = 10583
     MULTICOLOR = FANTASY
 
+class SortType(Enum):
+    RELEVANCE = "RELEVANCE"
+    PRICE_LOW_TO_HIGH = "PRICE_LOW_TO_HIGH"
+    PRICE_HIGH_TO_LOW = "PRICE_HIGH_TO_LOW"
+    NEWEST = "NEWEST"
+    RATING = "RATING"
+    NAME_ASCENDING = "NAME_ASCENDING"
+    MOST_POPULAR = "MOST_POPULAR"
+    WIDTH = "WIDTH"
+    HEIGHT = "HEIGHT"
+    LENGTH = "LENGTH"
 
 class Product(BaseModel):
     name: str
