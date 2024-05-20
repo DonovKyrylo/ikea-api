@@ -39,5 +39,9 @@ class Product(BaseModel):
     typeName: str
     url: str
     imageUrl: str
-    price: float
     itemMeasure: str
+    price: 'ProductPrice'
+
+class ProductPrice(BaseModel):
+    value: float
+    currencySymbol: str
