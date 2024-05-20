@@ -1,6 +1,8 @@
 from requests import get
 from ikeatypes import *
 
+def remove_null_params(params: dict[str]):
+    return {key: value for key, value in params.items() if value != None}
 
 def search_request(q: str, **kwargs: str):
     items = get(
