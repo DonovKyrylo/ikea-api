@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Query
+from fastapi import FastAPI, Query, HTTPException
 from fastapi.responses import RedirectResponse
 import uvicorn
 from ikeatypes import *
@@ -22,7 +22,15 @@ def search_products(
         color: str = get_enum_query(Color),
         sort: str = get_enum_query(SortType, SortType.RELEVANCE),
         includeFeatured: bool = False
-    ):
+    ) -> list[Product]:
+    if locale not in Locale._member_names_:
+        raise HTTPException(422, "Invalid locale")
+    if color is not None and color not in Color._member_names_:
+        raise HTTPException(422, "Invalid color")
+    if sort not in SortType._member_names_:
+        raise HTTPException(422, "Invalid sort type")
+
+
     return webscraper.search_request(
         query,
         Locale[locale],
