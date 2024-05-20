@@ -108,6 +108,7 @@ class Product(BaseModel):
     imageUrl: str
     itemMeasure: str
     price: 'ProductPrice'
+    isFeatured: bool
 
 class ProductPrice(BaseModel):
     value: float
