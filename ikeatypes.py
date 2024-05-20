@@ -36,6 +36,8 @@ class SortType(Enum):
 
 class Product(BaseModel):
     name: str
+    typeName: str
     url: str
     imageUrl: str
     price: float
+    itemMeasure: str
