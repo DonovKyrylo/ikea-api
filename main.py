@@ -21,7 +21,7 @@ def test() -> Product:
 
 def main():
     try:
-        uvicorn.run(app, host='0.0.0.0', port=80)
+        uvicorn.run(app, host='0.0.0.0', port=80, reload=True)
     except KeyboardInterrupt:
         pass
 
