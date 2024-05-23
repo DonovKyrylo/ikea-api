@@ -21,7 +21,9 @@ def search_products(
         locale: str = get_enum_query(Locale, Locale.EN_US),
         color: str = get_enum_query(Color),
         sort: str = get_enum_query(SortType, SortType.RELEVANCE),
-        includeFeatured: bool = False
+        includeFeatured: bool = False,
+        numProducts: int = 1000,
+        numProductsOffset: int = 0
     ) -> list[Product]:
     if locale not in Locale._member_names_:
         raise HTTPException(422, "Invalid locale")
@@ -29,7 +31,14 @@ def search_products(
         raise HTTPException(422, "Invalid color")
     if sort not in SortType._member_names_:
         raise HTTPException(422, "Invalid sort type")
+    if numProducts < 1 or numProducts > 1000:
+        raise HTTPException(422, "Invalid number of products, must be between 1 and 1000")
+    if numProductsOffset < 0:
+        raise HTTPException(422, "Invalid number of products offset, must be more or equal to 0")
 
+
+    startIndex = numProducts*numProductsOffset
+    endIndex = numProducts*(numProductsOffset+1)
 
     return webscraper.search_request(
         query,
@@ -37,7 +46,7 @@ def search_products(
         Color[color] if color else None,
         SortType[sort],
         includeFeatured=includeFeatured
-    )
+    )[startIndex:endIndex]
 
 def main():
     try:
