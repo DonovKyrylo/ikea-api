@@ -1,12 +1,14 @@
 from requests import get
 from ikeatypes import *
 import logging
+from functools import lru_cache
 
 logger = logging.getLogger("uvicorn.info")
 
 def remove_null_params(params: dict[str]):
     return {key: value for key, value in params.items() if value != None}
 
+@lru_cache(32)
 def search_request(
         query: str = None,
         locale: Locale = Locale.EN_US,
